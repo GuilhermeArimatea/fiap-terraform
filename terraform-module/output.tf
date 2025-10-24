@@ -1,3 +1,5 @@
 output "bucket_arn" {
-  value = aws_s3_bucket.bucket-aula3.arn
+  value = {
+    for key, bucket in aws_s3_bucket.bucket-aula : key => bucket.arn
+  }
 }

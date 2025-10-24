@@ -7,7 +7,7 @@ variable "bucket_name" {
 variable "tags_dev" {
   type = map(string)
   default = {
-    Name        = "aula03"
+    Name        = "fiap-aula"
     Environment = "Develop"
   }
 }
@@ -22,4 +22,8 @@ variable "tags_prd" {
 
 variable "instance_type" {
   default = "t3.micro"
+}
+
+variable "class-number-list" {
+  default = { "1" = "aula-1", "2" = "aula-2", "3" = "aula-3" }
 }

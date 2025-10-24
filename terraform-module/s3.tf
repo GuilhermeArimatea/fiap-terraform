@@ -8,15 +8,19 @@ resource "aws_s3_bucket" "bucket-backend" {
 }
 
 resource "aws_s3_bucket" "bucket-aula" {
-  provider = aws.virginia
-  bucket   = "raj-1025-aula02-${local.name}-${local.school}"
+  for_each = var.class-number-list
+  provider = aws.sp
+  bucket   = "raj-${local.school}-aula-terraform-${each.key}"
 
-  tags = var.tags_dev
+  tags = {
+    Name = each.value
+  }
 }
 
 resource "aws_s3_bucket" "bucket-aula3" {
+  count    = 2
   provider = aws.virginia
-  bucket   = "${var.bucket_name}03"
+  bucket   = "${var.bucket_name}-${local.school}-${local.name}"
 
   tags = var.tags_dev
 }
